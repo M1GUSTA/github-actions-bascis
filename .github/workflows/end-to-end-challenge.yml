@@ -3,7 +3,7 @@ name: Node.js end-to-end
 on: [push]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,3 +20,22 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  build:
+    permissions:
+      contents: read
+      packages: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying
+        run: echo "Deploying application..."
+
+      - name: Restarting Server
+        run: echo "Restarting server..."
